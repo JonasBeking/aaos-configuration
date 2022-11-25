@@ -88,8 +88,8 @@ export class AndroidAutomotiveManifest {
 
     async update() : Promise<void>{
 
-        const cumulativeRequiredPermissions = new Set<ApplicationPermission>()
-        const cumulativeRequiredFeatures = new Set<ApplicationFeature>()
+        const cumulativeRequiredPermissions = new Set<string>()
+        const cumulativeRequiredFeatures = new Set<string>()
 
         for(const config of this.automotivePluginConfigurations) {
             config.updateAnnotation((path) => {
@@ -99,21 +99,21 @@ export class AndroidAutomotiveManifest {
             })
 
             for(const permission of config.getRequiredPermissions()) {
-                cumulativeRequiredPermissions.add(permission)
+                cumulativeRequiredPermissions.add(permission.toManifestString())
             }
 
             for(const feature of config.getRequiredFeatures()) {
-                cumulativeRequiredFeatures.add(feature)
+                cumulativeRequiredFeatures.add(feature.toManifestString())
             }
 
         }
 
         for(const permission of this.applicationPermissions) {
-            cumulativeRequiredPermissions.add(permission)
+            cumulativeRequiredPermissions.add(permission.toManifestString())
         }
 
         for(const feature of this.applicationFeatures) {
-            cumulativeRequiredFeatures.add(feature)
+            cumulativeRequiredFeatures.add(feature.toManifestString())
         }
 
         await this.project.load()
@@ -122,13 +122,13 @@ export class AndroidAutomotiveManifest {
         this.project.android?.getAndroidManifest().deleteNodes("manifest/uses-permission")
 
         for(const permission of cumulativeRequiredPermissions) {
-            this.project.android?.getAndroidManifest().injectFragment("manifest",permission.toManifestString())
+            this.project.android?.getAndroidManifest().injectFragment("manifest",permission)
         }
 
         this.project.android?.getAndroidManifest().deleteNodes("manifest/uses-feature")
 
         for(const feature of cumulativeRequiredFeatures) {
-            this.project.android?.getAndroidManifest().injectFragment("manifest",feature.toManifestString())
+            this.project.android?.getAndroidManifest().injectFragment("manifest",feature)
         }
 
         this.project.android?.getAndroidManifest().deleteNodes("manifest/application/meta-data")
