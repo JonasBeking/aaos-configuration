@@ -1,0 +1,36 @@
+{
+  "api": {
+    "name": "AutomotiveCapacitorConfig",
+    "slug": "automotivecapacitorconfig",
+    "docs": "This is a serious documentation",
+    "tags": [],
+    "methods": [],
+    "properties": [
+      {
+        "name": "plugins",
+        "tags": [],
+        "docs": "Configure plugins.\n\nThis is an object with configuration values specified by plugin class\nname.",
+        "complexTypes": [],
+        "type": "{ VehiclePropertyPlugin?: { allowedVehicleProperties: number[]; } | undefined; VehicleUxRestrictionsPlugin?: {} | undefined; VehicleVolumePlugin?: {} | undefined; VehicleSensorPlugin?: { allowedSensorTypes: number[]; } | undefined; }"
+      },
+      {
+        "name": "includePlugins",
+        "tags": [],
+        "docs": "Allowlist of plugins to include during `npx cap sync`.\n\nThis should be an array of strings representing the npm package name of\nplugins to include when running `npx cap sync`. If unset, Capacitor will\ninspect `package.json` for a list of potential plugins.",
+        "complexTypes": [],
+        "type": "string[]"
+      },
+      {
+        "name": "automotive",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "type": "{ distractionOptimized: boolean; }"
+      }
+    ]
+  },
+  "interfaces": [],
+  "enums": [],
+  "typeAliases": [],
+  "pluginConfigs": []
+}

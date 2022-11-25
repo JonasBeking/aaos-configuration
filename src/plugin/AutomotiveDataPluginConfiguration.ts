@@ -24,8 +24,8 @@ export abstract class AutomotiveDataPluginConfiguration{
         return this.allowedDataIds
     }
 
-    public getName() : string {
-        return this.name
+    public getPackage() : string {
+        return this.package
     }
 
     public getMinCarApiLevel() : number {

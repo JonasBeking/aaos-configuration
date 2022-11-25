@@ -59,14 +59,6 @@
   "eslintConfig": {
     "extends": "@ionic/eslint-config/recommended"
   },
-  "capacitor": {
-    "ios": {
-      "src": "ios"
-    },
-    "android": {
-      "src": "android"
-    }
-  },
   "dependencies": {
     "@capacitor-community/aaos-vehicle-property": "file:../aaos-vehicle-property",
     "@capacitor/cli": "^4.4.0",

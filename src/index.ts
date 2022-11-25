@@ -12,3 +12,5 @@ export * from "./plugin/CapacitorPluginAnnotation"
 export * from "./plugin/PermissionAnnotation"
 
 export * from "./VehiclePropertyPluginConfiguration/VehiclePropertyPluginConfiguration"
+
+export * from "./DataUtilsPluginConfiguration/DataUtilsPluginConfiguration"

@@ -8,6 +8,7 @@ import {ApplicationPermission} from "../common/ApplicationPermission";
 import type {AutomotiveCapacitorConfig} from "../common/AutomotiveCapacitorConfig";
 import {ConfigurationError} from "../common/ConfigurationError";
 import type {AutomotiveDataPluginConfiguration} from "../plugin/AutomotiveDataPluginConfiguration";
+import {DataUtilsPluginConfiguration} from "../DataUtilsPluginConfiguration/DataUtilsPluginConfiguration";
 
 
 
@@ -37,6 +38,7 @@ export class AndroidAutomotiveManifest {
         this.automotiveConfig = config
         this.project = new MobileProject("./",trapezeConfig)
 
+        this.addPlugin(new DataUtilsPluginConfiguration())
     }
 
     /**
@@ -50,10 +52,11 @@ export class AndroidAutomotiveManifest {
             throw new ConfigurationError("Automotive Config has not been initialized")
         }
         this.automotivePluginConfigurations.push(pluginConfig)
-        const pluginName = pluginConfig.getName()
-        console.log("Registering plugin with name: ", pluginName)
+        const pluginPackage = pluginConfig.getPackage()
+        console.log("Registering plugin with package-name: ", pluginPackage)
+        this.automotiveConfig.includePlugins.push(pluginPackage)
 
-        this.automotiveConfig.includePlugins.push(pluginName)
+
         return this
     }
 
@@ -85,8 +88,8 @@ export class AndroidAutomotiveManifest {
 
     async update() : Promise<void>{
 
-        const cummulativeRequiredPermissions = new Set<ApplicationPermission>()
-        const cummulativeRequiredFeatures = new Set<ApplicationFeature>()
+        const cumulativeRequiredPermissions = new Set<ApplicationPermission>()
+        const cumulativeRequiredFeatures = new Set<ApplicationFeature>()
 
         for(const config of this.automotivePluginConfigurations) {
             config.updateAnnotation((path) => {
@@ -96,21 +99,21 @@ export class AndroidAutomotiveManifest {
             })
 
             for(const permission of config.getRequiredPermissions()) {
-                cummulativeRequiredPermissions.add(permission)
+                cumulativeRequiredPermissions.add(permission)
             }
 
             for(const feature of config.getRequiredFeatures()) {
-                cummulativeRequiredFeatures.add(feature)
+                cumulativeRequiredFeatures.add(feature)
             }
 
         }
 
         for(const permission of this.applicationPermissions) {
-            cummulativeRequiredPermissions.add(permission)
+            cumulativeRequiredPermissions.add(permission)
         }
 
         for(const feature of this.applicationFeatures) {
-            cummulativeRequiredFeatures.add(feature)
+            cumulativeRequiredFeatures.add(feature)
         }
 
         await this.project.load()
@@ -118,13 +121,13 @@ export class AndroidAutomotiveManifest {
 
         this.project.android?.getAndroidManifest().deleteNodes("manifest/uses-permission")
 
-        for(const permission of cummulativeRequiredPermissions) {
+        for(const permission of cumulativeRequiredPermissions) {
             this.project.android?.getAndroidManifest().injectFragment("manifest",permission.toManifestString())
         }
 
         this.project.android?.getAndroidManifest().deleteNodes("manifest/uses-feature")
 
-        for(const feature of cummulativeRequiredFeatures) {
+        for(const feature of cumulativeRequiredFeatures) {
             this.project.android?.getAndroidManifest().injectFragment("manifest",feature.toManifestString())
         }
 
