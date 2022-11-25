@@ -227,27 +227,27 @@ class AndroidAutomotiveManifest {
                 fs__default["default"].writeFileSync(path, content);
             });
             for (const permission of config.getRequiredPermissions()) {
-                cumulativeRequiredPermissions.add(permission);
+                cumulativeRequiredPermissions.add(permission.toManifestString());
             }
             for (const feature of config.getRequiredFeatures()) {
-                cumulativeRequiredFeatures.add(feature);
+                cumulativeRequiredFeatures.add(feature.toManifestString());
             }
         }
         for (const permission of this.applicationPermissions) {
-            cumulativeRequiredPermissions.add(permission);
+            cumulativeRequiredPermissions.add(permission.toManifestString());
         }
         for (const feature of this.applicationFeatures) {
-            cumulativeRequiredFeatures.add(feature);
+            cumulativeRequiredFeatures.add(feature.toManifestString());
         }
         await this.project.load();
         await ((_a = this.project.android) === null || _a === void 0 ? void 0 : _a.getAndroidManifest().load());
         (_b = this.project.android) === null || _b === void 0 ? void 0 : _b.getAndroidManifest().deleteNodes("manifest/uses-permission");
         for (const permission of cumulativeRequiredPermissions) {
-            (_c = this.project.android) === null || _c === void 0 ? void 0 : _c.getAndroidManifest().injectFragment("manifest", permission.toManifestString());
+            (_c = this.project.android) === null || _c === void 0 ? void 0 : _c.getAndroidManifest().injectFragment("manifest", permission);
         }
         (_d = this.project.android) === null || _d === void 0 ? void 0 : _d.getAndroidManifest().deleteNodes("manifest/uses-feature");
         for (const feature of cumulativeRequiredFeatures) {
-            (_e = this.project.android) === null || _e === void 0 ? void 0 : _e.getAndroidManifest().injectFragment("manifest", feature.toManifestString());
+            (_e = this.project.android) === null || _e === void 0 ? void 0 : _e.getAndroidManifest().injectFragment("manifest", feature);
         }
         (_f = this.project.android) === null || _f === void 0 ? void 0 : _f.getAndroidManifest().deleteNodes("manifest/application/meta-data");
         for (const metaData of this.applicationMetaData) {
