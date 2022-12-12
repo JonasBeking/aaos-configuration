@@ -4,7 +4,7 @@ import { ApplicationFeature } from "../common/ApplicationFeature";
 import { ApplicationMetaData } from "../common/ApplicationMetaData";
 import { ApplicationPermission } from "../common/ApplicationPermission";
 import { ConfigurationError } from "../common/ConfigurationError";
-import { DataUtilsPluginConfiguration } from "../DataUtilsPluginConfiguration/DataUtilsPluginConfiguration";
+import { DataUtilsPluginConfiguration } from "../concrete/concrete";
 /**
  * Certainly
  */

@@ -41,7 +41,7 @@ export class AutomotiveDataPluginConfiguration {
         let fileContent = filereader(this.getPluginPath());
         const previousAnnotation = fileContent.match(/@AutomotiveData([\s\S]*?)public class/g);
         if (previousAnnotation == null || previousAnnotation.length == 0 || previousAnnotation.length > 1) {
-            console.error(`Annotations of Plugin: ${this.name} are malformed`);
+            console.error(`Annotations of Plugin: ${this.name} are malformed or missing`);
             return;
         }
         fileContent = fileContent.replace(previousAnnotation[0], this.getAnnotation() + "\npublic class");

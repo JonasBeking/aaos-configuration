@@ -8,5 +8,4 @@ export * from "./plugin/AutomotiveDataAnnotation";
 export * from "./plugin/AutomotiveDataPluginConfiguration";
 export * from "./plugin/CapacitorPluginAnnotation";
 export * from "./plugin/PermissionAnnotation";
-export * from "./VehiclePropertyPluginConfiguration/VehiclePropertyPluginConfiguration";
-export * from "./DataUtilsPluginConfiguration/DataUtilsPluginConfiguration";
+export * from "./concrete/concrete";

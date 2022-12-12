@@ -7,8 +7,8 @@ import {ApplicationMetaData} from "../common/ApplicationMetaData";
 import {ApplicationPermission} from "../common/ApplicationPermission";
 import type {AutomotiveCapacitorConfig} from "../common/AutomotiveCapacitorConfig";
 import {ConfigurationError} from "../common/ConfigurationError";
+import {DataUtilsPluginConfiguration} from "../concrete/concrete";
 import type {AutomotiveDataPluginConfiguration} from "../plugin/AutomotiveDataPluginConfiguration";
-import {DataUtilsPluginConfiguration} from "../DataUtilsPluginConfiguration/DataUtilsPluginConfiguration";
 
 
 

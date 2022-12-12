@@ -8,10 +8,10 @@ import {AutomotiveDataPluginConfiguration} from "../plugin/AutomotiveDataPluginC
 
 
 
-
 type VehiclePropertyToPermissionMapType = {
     [key: number] : string
 }
+
 
 const VehiclePropertyToPermissionMap : VehiclePropertyToPermissionMapType = {
 
@@ -46,6 +46,7 @@ VehiclePropertyToPermissionMap[VehiclePropertyIds.TIRE_PRESSURE_DISPLAY_UNITS] =
 VehiclePropertyToPermissionMap[VehiclePropertyIds.WHEEL_TICK] = VehiclePermissions.PERMISSION_SPEED;
 VehiclePropertyToPermissionMap[VehiclePropertyIds.PERF_VEHICLE_SPEED_DISPLAY] = VehiclePermissions.PERMISSION_READ_DISPLAY_UNITS
 VehiclePropertyToPermissionMap[VehiclePropertyIds.PERF_STEERING_ANGLE] = VehiclePermissions.PERMISSION_READ_STEERING_STATE
+
 
 
 export class VehiclePropertyPluginConfiguration extends AutomotiveDataPluginConfiguration{

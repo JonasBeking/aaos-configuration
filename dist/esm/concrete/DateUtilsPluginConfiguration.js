@@ -21,4 +21,4 @@ export class DataUtilsPluginConfiguration extends AutomotiveDataPluginConfigurat
         return features;
     }
 }
-//# sourceMappingURL=DataUtilsPluginConfiguration.js.map
+//# sourceMappingURL=DateUtilsPluginConfiguration.js.map

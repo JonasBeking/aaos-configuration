@@ -30,12 +30,12 @@
     "build-simple": "npm run clean && tsc",
     "build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.js",
     "clean": "rimraf ./dist",
-    "watch": "tsc --watch",
-    "prepublishOnly": "npm run build",
-    "capacitor:update:after": "echo 'wtf is this'"
+    "watch": "watch 'npm run build' ./src",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@capacitor/android": "^4.0.0",
+    "@capacitor/cli": "^4.4.0",
     "@capacitor/core": "^4.0.0",
     "@capacitor/docgen": "^0.0.18",
     "@capacitor/ios": "^4.0.0",
@@ -43,6 +43,7 @@
     "@ionic/prettier-config": "^1.0.1",
     "@ionic/swiftlint-config": "^1.1.2",
     "@rollup/plugin-node-resolve": "^15.0.1",
+    "@trapezedev/project": "^6.0.0",
     "eslint": "^7.11.0",
     "prettier": "~2.3.0",
     "prettier-plugin-java": "~1.0.2",
@@ -60,8 +61,6 @@
     "extends": "@ionic/eslint-config/recommended"
   },
   "dependencies": {
-    "@capacitor-community/aaos-vehicle-property": "file:../aaos-vehicle-property",
-    "@capacitor/cli": "^4.4.0",
-    "@trapezedev/project": "^6.0.0"
+    "@capacitor-community/aaos-vehicle-property": "github:JonasBeking/aaos-vehicle-property"
   }
 }
